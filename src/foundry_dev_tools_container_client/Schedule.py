@@ -105,7 +105,8 @@ class Refresh:
 
         # CYCLE CHECK
         if self.cycle not in Refresh.padding:  # check for valid cycle
-            raise ValueError(f"Unsupported cycle '{self.cycle}', supported cycles are: '{'\', \''.join(Refresh.padding.keys())}'")
+            supported_cycles = "', '".join(Refresh.padding.keys())
+            raise ValueError(f"Unsupported cycle '{self.cycle}', supported cycles are: '{supported_cycles}'")
         
         # DAY CHECK
         if self.day == 0:
@@ -116,7 +117,8 @@ class Refresh:
                 raise ValueError(f"Unsupported type {type(self.day)} for 'day', expects <class 'str'> for weekly cycles.")
 
             if self.day.lower() not in Refresh.weekday_mapping:  # check for valid weekday name
-                raise ValueError(f"Unsupported weekday '{self.day}', supported weekdays are: '{'\', \''.join(Refresh.weekday_mapping.keys())}'")
+                supported_weekdays = "', '".join(Refresh.weekday_mapping.keys())
+                raise ValueError(f"Unsupported weekday '{self.day}', supported weekdays are: '{supported_weekdays}'")
         
         elif not isinstance(self.day, int):  # check for valid type for cycle not weekly
             raise ValueError(f"Unsupported type {type(self.day)} for 'day', expects <class 'int'> for {self.cycle} cycles.")
